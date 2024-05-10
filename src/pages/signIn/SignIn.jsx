@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { FaGoogle, FaGithub } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import logo from '../../assets/logo/hunger_helper_logo.png';
 import { useState } from "react";
+import SocialSignIns from "../shared/socialSingIns/SocialSignIns";
 
 const SignIn = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,9 +17,9 @@ const SignIn = () => {
   }
 
   return (
-    <div className="hero my-10">
-      <div className="hero-content flex-col lg:flex-row gap-10">
-        <img src={logo} className="max-w-sm rounded-lg" />
+    <div className="hero my-5 md:my-8 lg:my-10">
+      <div className="hero-content flex-col md:flex-row gap-5 md:gap-10">
+        <img src={logo} className="w-1/2 md:max-w-sm rounded-lg" />
         <div>
           <h2 className="text-3xl font-extrabold text-center">Sign In</h2>
           <form onSubmit={handleSubmit(handleSignIn)}>
@@ -61,22 +61,13 @@ const SignIn = () => {
             <input type="submit" value="Sign In" className="btn bg-blue-light text-white w-full mt-3 hover:bg-blue-dark" />
           </form>
 
-          {/* redirect to register */}
+          {/* redirect to sing up */}
           <p className="mt-4 text-center">Don&#39;t have an account? Please <Link className="underline text-orange-light" to={'/sign_up'}>Sign Up</Link></p>
 
           <div className="divider">Or Sign in using</div>
 
           {/* social login options */}
-          <div className="text-center">
-            <button className="btn bg-green-light hover:bg-green-dark text-white mr-4">
-              <FaGoogle className="text-xl" />
-              Sign In with Google
-            </button>
-            <button className="btn bg-green-light hover:bg-green-dark text-white">
-              <FaGithub className="text-xl" />
-              Sign In with Github
-            </button>
-          </div>
+          <SocialSignIns />
         </div>
       </div>
     </div>
