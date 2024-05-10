@@ -20,7 +20,6 @@ const SignUp = () => {
     const email = data.email;
     const password = data.password;
     const photo = data.photo;
-    // console.log(name, email, password, photo);
     
     // sign up user
     createUser(email, password)

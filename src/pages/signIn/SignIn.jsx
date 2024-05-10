@@ -1,19 +1,34 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import logo from '../../assets/logo/hunger_helper_logo.png';
 import { useState } from "react";
 import SocialSignIns from "../shared/socialSingIns/SocialSignIns";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
+  const { signInUser, setLoading } = useAuth();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [hidePassword, setHidePassword] = useState(true);
 
-  // login handler
+  // sign in handler
   const handleSignIn = data => {
     const email = data.email;
     const password = data.password;
-    console.log(email, password);
+
+    // sing in user
+    signInUser(email, password)
+      .then(() => {
+        setLoading(false);
+        navigate('/');
+        toast.success('Signed in successfully!');
+      })
+      .catch(() => {
+        setLoading(false);
+        toast.error('Incorrect email or password');
+      });
   }
 
   return (
