@@ -1,9 +1,11 @@
 import NavItem from "./NavItem";
 import logo from '../../../assets/logo/hunger_helper_logo.png';
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const user = false;
+  const { user, signOutUser, setLoading } = useAuth();
   const navigate = useNavigate();
 
   const navItemData = [
@@ -24,9 +26,22 @@ const Navbar = () => {
     }
   </>
 
+  // sign out handler
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        toast.success('Signed out successfully!');
+        setLoading(false);
+      })
+      .catch(() => {
+        toast.error('Error: Try again!');
+        setLoading(false);
+      })
+  };
+
   const userControls = <>
     {
-      user ? <button className="btn btn-sm lg:btn-md bg-blue-light hover:bg-blue-dark text-white font-semibold text-base">Sing Out</button> :
+      user ? <button onClick={handleSignOut} className="btn btn-sm lg:btn-md bg-blue-light hover:bg-blue-dark text-white font-semibold text-base">Sign Out</button> :
         <>
           <button
             onClick={() => navigate('/sign_in')}
