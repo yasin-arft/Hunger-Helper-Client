@@ -1,11 +1,16 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import logo from '../../assets/logo/hunger_helper_logo.png';
 import { useState } from "react";
 import SocialSignIns from "../shared/socialSingIns/SocialSignIns";
+import useAuth from "../../hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+  const { createUser, setLoading } = useAuth();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [hidePassword, setHidePassword] = useState(true);
 
@@ -15,7 +20,27 @@ const SignUp = () => {
     const email = data.email;
     const password = data.password;
     const photo = data.photo;
-    console.log(name, email, password, photo);
+    // console.log(name, email, password, photo);
+    
+    // sign up user
+    createUser(email, password)
+      .then(res => {
+        // update user name and photoUrl
+        updateProfile(res.user, {
+          displayName: name, photoURL: photo
+        }).then(() => {
+          setLoading(false);
+          navigate('/');
+          toast.success('Signed up successfully!');
+        }).catch(() => {
+          setLoading(false);
+          navigate('/');
+        });
+      })
+      .catch(() => {
+        setLoading(false);
+        toast.error('An unexpected error happened')
+      })
   }
   return (
     <div className="hero my-5 md:my-8 lg:my-10">
