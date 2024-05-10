@@ -4,7 +4,7 @@ import Navbar from "../pages/shared/navbar/Navbar";
 const Root = () => {
   return (
     <div>
-      <header className="container mx-auto px-2">
+      <header className="bg-base-100 shadow-md rounded-lg">
         <Navbar />
       </header>
       <main className="container mx-auto px-2">
