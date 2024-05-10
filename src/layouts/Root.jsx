@@ -7,7 +7,7 @@ const Root = () => {
       <header className="container mx-auto px-2">
         <Navbar />
       </header>
-      <main>
+      <main className="container mx-auto px-2">
         <Outlet />
       </main>
       <footer></footer>

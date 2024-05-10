@@ -18,6 +18,11 @@ export default {
           light: '#4CAF50 ',
           dark: '#388E3C'
         },
+        orange: {
+          light: '#FF9800',
+          dark: '#F57C00'
+        },
+        dark: '#191919'
       }
     },
   },

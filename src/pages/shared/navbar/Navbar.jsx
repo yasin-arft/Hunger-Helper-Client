@@ -1,9 +1,10 @@
 import NavItem from "./NavItem";
 import logo from '../../../assets/logo/hunger_helper_logo.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const user = false;
+  const navigate = useNavigate();
 
   const navItemData = [
     { path: '/', text: 'Home' },
@@ -23,8 +24,22 @@ const Navbar = () => {
     }
   </>
 
+  const userControls = <>
+    {
+      user ? <button className="btn btn-sm lg:btn-md bg-blue-light hover:bg-blue-dark text-white font-semibold text-base">Sing Out</button> :
+        <>
+          <button
+            onClick={() => navigate('/sign_in')}
+            className="btn btn-sm lg:btn-md bg-blue-light hover:bg-blue-dark text-white font-semibold text-base mr-3">Sign In</button>
+          <button
+            onClick={() => navigate('/sign_up')}
+            className="btn btn-sm lg:btn-md bg-blue-light hover:bg-blue-dark text-white font-semibold text-base">Sign Up</button>
+        </>
+    }
+  </>;
+
   return (
-    <div className="navbar bg-base-100 shadow">
+    <div className="navbar bg-base-100 shadow-md rounded-lg">
       <div className="navbar-start w-auto flex-1">
         <Link to={'/'}>
           <div className="flex gap-2 h-full items-center">
@@ -40,8 +55,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end items-center w-auto">
         <div className="hidden lg:block">
-          <button className="btn bg-blue-light hover:bg-blue-dark text-white font-semibold text-base mr-3">Sign In</button>
-          <button className="btn bg-blue-light hover:bg-blue-dark text-white font-semibold text-base">Sign Up</button>
+          {userControls}
         </div>
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,12 +66,7 @@ const Navbar = () => {
               {navItems}
             </ul>
             <div className="flex flex-col">
-              {
-                user ? <button className="btn btn-sm bg-blue-light hover:bg-blue-dark text-white font-semibold text-base">Sing Out</button> : <>
-                  <button className="btn btn-sm bg-blue-light hover:bg-blue-dark text-white font-semibold text-base">Sign In</button>
-                  <button className="btn btn-sm bg-blue-light hover:bg-blue-dark text-white font-semibold text-base">Sign Up</button>
-                </>
-              }
+              {userControls}
             </div>
           </div>
         </div>
