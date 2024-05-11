@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import logo from '../../assets/logo/hunger_helper_logo.png';
 import { useState } from "react";
@@ -7,10 +7,11 @@ import SocialSignIns from "../shared/socialSingIns/SocialSignIns";
 import useAuth from "../../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
+import useSignRedirect from "../../hooks/useSignRedirect";
 
 const SignUp = () => {
   const { createUser, setLoading } = useAuth();
-  const navigate = useNavigate();
+  const signInRedirect = useSignRedirect();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [hidePassword, setHidePassword] = useState(true);
 
@@ -29,11 +30,11 @@ const SignUp = () => {
           displayName: name, photoURL: photo
         }).then(() => {
           setLoading(false);
-          navigate('/');
+          signInRedirect();
           toast.success('Signed up successfully!');
         }).catch(() => {
           setLoading(false);
-          navigate('/');
+          toast.error('An unexpected error happened!');
         });
       })
       .catch(() => {

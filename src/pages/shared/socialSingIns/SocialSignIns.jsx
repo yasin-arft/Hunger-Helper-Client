@@ -1,17 +1,17 @@
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useSignRedirect from "../../../hooks/useSignRedirect";
 
 const SocialSignIns = () => {
   const { googleSignIn, githubSignIn, setLoading } = useAuth();
-  const navigate = useNavigate();
+  const signInRedirect = useSignRedirect();
 
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then(() => {
         setLoading(false);
-        navigate('/');
+        signInRedirect();
         toast.success('Signed in successfully!');
       })
       .catch(() => {
@@ -23,7 +23,7 @@ const SocialSignIns = () => {
     githubSignIn()
       .then(() => {
         setLoading(false);
-        navigate('/');
+        signInRedirect();
         toast.success('Signed in successfully!');
       })
       .catch(() => {
