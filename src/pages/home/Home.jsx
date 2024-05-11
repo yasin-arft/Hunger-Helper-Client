@@ -1,10 +1,10 @@
-import FeaturedFood from "./featuredFoods/FeaturedFood";
+import FeaturedFoods from "./featuredFoods/FeaturedFoods";
 
 
 const Home = () => {
   return (
     <div>
-      <FeaturedFood />
+      <FeaturedFoods />
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-const FeaturedFoodCard = ({ foodData }) => {
+const FoodCard = ({ foodData }) => {
   const navigate = useNavigate();
-
   const { _id, foodImage, foodName, additionalNotes, foodQuantity, pickupLocation, donatorImage, donatorName, expiredDate } = foodData;
 
   return (
@@ -12,7 +11,7 @@ const FeaturedFoodCard = ({ foodData }) => {
         <img className='w-full h-auto max-h-60 rounded-md' src={foodImage} alt={`${foodName} image`} />
       </figure>
       <div className="card-body p-0 pt-5">
-      <hr className='border border-dashed opacity-80' />
+        <hr className='border border-dashed opacity-80' />
         <div className='flex gap-4 items-center'>
           <figure className='size-16 rounded-full'>
             <img src={donatorImage} alt="Donator image" />
@@ -36,8 +35,8 @@ const FeaturedFoodCard = ({ foodData }) => {
   );
 };
 
-FeaturedFoodCard.propTypes = {
+FoodCard.propTypes = {
   foodData: PropTypes.object
 };
 
-export default FeaturedFoodCard;
+export default FoodCard;

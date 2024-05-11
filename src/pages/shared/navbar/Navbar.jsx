@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const navItemData = [
     { path: '/', text: 'Home' },
-    { path: '/available_food', text: 'Available Food' },
+    { path: '/available_foods', text: 'Available Foods' },
   ]
 
   // private routes

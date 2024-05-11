@@ -4,6 +4,7 @@ import SignIn from "../pages/signIn/SignIn";
 import Home from "../pages/home/Home";
 import SignUp from "../pages/signUp/SignUp";
 import SingleFoodDetails from "../pages/singleFoodDetails/SingleFoodDetails";
+import AvailableFoods from "../pages/availableFoods/AvailableFoods";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/sign_up',
         element: <SignUp />
+      },
+      {
+        path: '/available_foods',
+        element: <AvailableFoods />
       },
       {
         path: '/food_details/:id',
