@@ -13,7 +13,7 @@ const Foods = ({ data }) => {
 };
 
 Foods.propTypes = {
-  data: PropTypes.node
+  data: PropTypes.array
 };
 
 export default Foods;
