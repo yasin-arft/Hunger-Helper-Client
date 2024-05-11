@@ -5,7 +5,7 @@ const FeaturedFoodCard = ({ foodData }) => {
   const navigate = useNavigate();
 
   const { _id, foodImage, foodName, additionalNotes, foodQuantity, pickupLocation, donatorImage, donatorName, expiredDate } = foodData;
-  console.log(foodData);
+
   return (
     <div className="card border p-4">
       <figure>
