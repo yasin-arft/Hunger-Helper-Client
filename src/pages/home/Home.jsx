@@ -1,9 +1,10 @@
+import FeaturedFood from "./featuredFoods/FeaturedFood";
 
 
 const Home = () => {
   return (
     <div>
-      This is home
+      <FeaturedFood />
     </div>
   );
 };
