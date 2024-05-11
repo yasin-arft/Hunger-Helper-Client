@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import logo from '../../assets/logo/hunger_helper_logo.png';
 import { useState } from "react";
@@ -12,6 +12,8 @@ const SignIn = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [hidePassword, setHidePassword] = useState(true);
+  const location = useLocation();
+  console.log(location);
 
   // sign in handler
   const handleSignIn = data => {
@@ -22,7 +24,7 @@ const SignIn = () => {
     signInUser(email, password)
       .then(() => {
         setLoading(false);
-        navigate('/');
+        navigate(location.state || '/');
         toast.success('Signed in successfully!');
       })
       .catch(() => {
