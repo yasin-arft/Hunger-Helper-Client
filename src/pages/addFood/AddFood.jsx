@@ -1,35 +1,25 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddFood = () => {
   const { register, handleSubmit } = useForm();
   const { user } = useAuth();
 
   const handleAddFood = data => {
-    console.log(data);
+    axios.post('/foods', data)
+      .then(res =>{
+        if(res.data.insertedId){
+          Swal.fire({
+            title: 'Done!',
+            text: 'Food added successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        }
+      });
   }
-
-
-  // foodName
-  // "Banana"
-  // foodImage
-  // "https://i.ibb.co/vHJKCvC/spaghetti-bolognese.jpg"
-  // foodQuantity
-  // 10
-  // pickupLocation
-  // "456 Elm Street"
-  // expiredDate
-  // "2024-05-17"
-  // additionalNotes
-  // "Ripe bananas"
-  // donatorName
-  // "Jane Smith"
-  // donatorEmail
-  // "jane@example.com"
-  // donatorImage
-  // "https://i.ibb.co/n7xGsYb/images.jpg"
-  // foodStatus
-  // "requested"
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
@@ -137,7 +127,7 @@ const AddFood = () => {
           </label>
 
           {/* form submit button */}
-          <input type="submit" value="Sign In" className="btn col-span-2 bg-blue-light text-white w-full mt-3 hover:bg-blue-dark" />
+          <input type="submit" value="Add Food" className="btn col-span-2 bg-blue-light text-white w-full mt-3 hover:bg-blue-dark" />
         </form>
       </div>
     </section>

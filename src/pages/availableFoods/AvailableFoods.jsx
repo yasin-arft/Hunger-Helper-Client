@@ -32,10 +32,10 @@ const AvailableFoods = () => {
         </form>
         <div>
           <label className="form-control">
-            <select className="select select-bordered">
-              <option disabled selected>Sort By Expiry Date</option>
-              <option>Ascending</option>
-              <option>Descending</option>
+            <select defaultValue={''} className="select select-bordered">
+              <option value={''} disabled >Sort By Expiry Date</option>
+              <option value={'Ascending'}>Ascending</option>
+              <option value={'Descending'}>Descending</option>
             </select>
           </label>
         </div>
