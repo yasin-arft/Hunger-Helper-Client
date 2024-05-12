@@ -16,7 +16,7 @@ const Navbar = () => {
   // private routes
   user && navItemData.push(
     { path: '/add_food', text: 'Add Food' },
-    { path: '/manage_my_food', text: 'Manage My Foods' },
+    { path: '/manage_my_foods', text: 'Manage My Foods' },
     { path: '/my_food_request', text: 'My Food Request' },
   );
 
