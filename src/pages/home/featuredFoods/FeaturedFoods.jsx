@@ -17,7 +17,7 @@ const FeaturedFoods = () => {
       <h2 className="text-3xl font-bold text-center">Featured Foods</h2>
       <Foods data={featuredFoods} />
       <div className="text-center mt-5">
-        <button onClick={() => navigate('/available_food')} className="btn bg-green-light hover:bg-green-dark text-white px-8 font-bold">See all</button>
+        <button onClick={() => navigate('/available_foods')} className="btn bg-green-light hover:bg-green-dark text-white px-8 font-bold">See all</button>
       </div>
     </section>
   );
