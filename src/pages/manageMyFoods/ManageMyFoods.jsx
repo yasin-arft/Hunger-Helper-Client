@@ -5,7 +5,7 @@ import ManageFoodRow from "./ManageFoodRow";
 
 const ManageMyFoods = () => {
   const { user } = useAuth();
-  const { data: myFoods, isPending } = useQuery({
+  const { data: myFoods, isPending, refetch } = useQuery({
     queryKey: ['my-foods'],
     queryFn: async () => {
       const res = await axios.get(`http://localhost:5000/my_foods?donatorEmail=${user.email}`);
@@ -14,8 +14,6 @@ const ManageMyFoods = () => {
   });
 
   if (isPending) return
-
-  // console.log(myFoods);
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
@@ -37,7 +35,10 @@ const ManageMyFoods = () => {
 
             <tbody>
               {
-                myFoods.map(food => <ManageFoodRow key={food._id} food={food} />)
+                myFoods.map(food => <ManageFoodRow
+                  key={food._id}
+                  food={food}
+                  refetch={refetch} />)
               }
             </tbody>
 
