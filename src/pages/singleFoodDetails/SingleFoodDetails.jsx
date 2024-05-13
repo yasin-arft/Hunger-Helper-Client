@@ -1,8 +1,28 @@
-import { useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import RequestModal from "./RequestModal";
+import { useState } from "react";
 
 const SingleFoodDetails = () => {
-  const foodData = useLoaderData();
+  const { id } = useParams();
+  const [modalOpen, setModalOpen] = useState(false);
+  const { data: foodData, isPending } = useQuery({
+    queryKey: ['food-to-update'],
+    queryFn: async () => {
+      const res = await axios.get(`/food/${id}`);
+      return res.data
+    }
+  });
+
+  if (isPending) return
+
   const { foodImage, foodName, foodQuantity, pickupLocation, donatorName, expiredDate } = foodData;
+
+  const handleRequest = () => {
+    setModalOpen(true);
+  }
+
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
@@ -19,7 +39,7 @@ const SingleFoodDetails = () => {
               <span>Expires At: {expiredDate}</span>
             </div>
             <div className="card-actions">
-              <button className="btn bg-blue-light hover:bg-blue-dark text-white w-full">Request</button>
+              <button onClick={handleRequest} className="btn bg-blue-light hover:bg-blue-dark text-white w-full">Request</button>
             </div>
           </div>
         </div>
@@ -29,6 +49,10 @@ const SingleFoodDetails = () => {
           <p className="font-medium">Pickup Location: {pickupLocation}</p>
         </div>
       </div>
+
+      <RequestModal
+       modalOpen={modalOpen}
+      setModalOpen={setModalOpen} />
     </section>
   );
 };
