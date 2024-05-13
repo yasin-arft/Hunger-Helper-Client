@@ -8,7 +8,7 @@ const SingleFoodDetails = () => {
   const { id } = useParams();
   const [modalOpen, setModalOpen] = useState(false);
   const { data: foodData, isPending } = useQuery({
-    queryKey: ['food-to-update'],
+    queryKey: ['single-food'],
     queryFn: async () => {
       const res = await axios.get(`/food/${id}`);
       return res.data

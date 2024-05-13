@@ -11,7 +11,7 @@ const UpdateFood = () => {
   const { data: food, isPending, refetch } = useQuery({
     queryKey: ['food-to-update'],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/food/${id}`);
+      const res = await axios.get(`/food/${id}`);
       return res.data
     }
   });

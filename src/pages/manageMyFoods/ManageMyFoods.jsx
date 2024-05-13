@@ -8,7 +8,7 @@ const ManageMyFoods = () => {
   const { data: myFoods, isPending, refetch } = useQuery({
     queryKey: ['my-foods'],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/my_foods?donatorEmail=${user.email}`);
+      const res = await axios.get(`/my_foods?donatorEmail=${user.email}`);
       return res.data
     }
   });
