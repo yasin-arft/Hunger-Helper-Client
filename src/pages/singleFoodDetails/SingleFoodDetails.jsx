@@ -51,8 +51,9 @@ const SingleFoodDetails = () => {
       </div>
 
       <RequestModal
-       modalOpen={modalOpen}
-      setModalOpen={setModalOpen} />
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        foodData={foodData} />
     </section>
   );
 };
