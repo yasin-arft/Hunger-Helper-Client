@@ -28,7 +28,7 @@ const FoodCard = ({ foodData }) => {
         </div>
         <hr className='border border-dashed opacity-80' />
         <div className="card-actions justify-end">
-          <button onClick={() => navigate(`food_details/${_id}`)} className="btn bg-blue-light hover:bg-blue-dark text-white">View Details</button>
+          <button onClick={() => navigate(`/food_details/${_id}`)} className="btn bg-blue-light hover:bg-blue-dark text-white">View Details</button>
         </div>
       </div>
     </div>

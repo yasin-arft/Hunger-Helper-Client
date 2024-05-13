@@ -1,19 +1,63 @@
 import PropTypes from "prop-types";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const RequestModal = ({ modalOpen, setModalOpen, foodData }) => {
   const { _id, foodName, foodImage, donatorName, donatorEmail, pickupLocation, expiredDate, additionalNotes } = foodData;
   const { user } = useAuth();
   const date = new Date();
   const requestDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+  // react hook form
   const { register, handleSubmit } = useForm();
 
+  // tanstack query
+  const { mutate: requestFood, data: requestedResult, isSuccess, isPending } = useMutation({
+    mutationFn: requestData => {
+      return axios.post('/requested_foods', requestData);
+    }
+  });
+  const { mutate: updateStatus } = useMutation({
+    mutationFn: status => {
+      return axios.patch(`/food/${_id}`, status);
+    }
+  });
+
+  // dialog close handler
   const handleClose = () => {
     setModalOpen(false);
   }
+
+  // confirm request handler
   const handleConfirmRequest = data => {
-    console.log(data.additionalNotes);
+    const document = {
+      id: _id,
+      foodName,
+      foodImage,
+      donatorName,
+      donatorEmail,
+      pickupLocation,
+      expiredDate,
+      requestDate,
+      userEmail: user.email,
+      additionalNotes: data.additionalNotes,
+      foodStatus: 'Requested'
+    }
+    updateStatus({ foodStatus: 'Requested' });
+    requestFood(document);
+    setModalOpen(false);
+  }
+
+  if (isSuccess && requestedResult.data?.acknowledged) {
+    Swal.fire({
+      title: 'Done!',
+      text: 'Food requested successfully',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    })
   }
 
   return (
@@ -41,14 +85,14 @@ const RequestModal = ({ modalOpen, setModalOpen, foodData }) => {
                 <div className="label">
                   <span className="font-semibold">Additional Notes: </span>
                 </div>
-                <textarea 
-                {...register('additionalNotes')} 
-                className="textarea textarea-bordered h-24" 
-                defaultValue={additionalNotes} 
-                placeholder="Additional Notes"
-                required></textarea>
+                <textarea
+                  {...register('additionalNotes')}
+                  className="textarea textarea-bordered h-24"
+                  defaultValue={additionalNotes}
+                  placeholder="Additional Notes"
+                  required></textarea>
               </label>
-              <input type="submit" value="Confirm Request" className="btn bg-blue-light hover:bg-blue-dark text-white w-full mt-2" />
+              <input type="submit" value="Confirm Request" className="btn bg-blue-light hover:bg-blue-dark text-white w-full mt-2" disabled={isPending} />
             </form>
           </div>
         </div>
