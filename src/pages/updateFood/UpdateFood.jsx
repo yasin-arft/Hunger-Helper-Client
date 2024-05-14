@@ -3,10 +3,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateFood = () => {
   const { id } = useParams();
   const { register, handleSubmit } = useForm();
+  const axiosSecure = useAxiosSecure();
 
   const { data: food, isPending, refetch } = useQuery({
     queryKey: ['food-to-update'],
@@ -19,7 +21,7 @@ const UpdateFood = () => {
   if (isPending) return
 
   const handleUpdateFood = data => {
-    axios.patch(`/food/${id}`, data)
+    axiosSecure.patch(`/food/${id}`, data)
       .then(res => {
         if (res.data.modifiedCount > 0) {
           Swal.fire({

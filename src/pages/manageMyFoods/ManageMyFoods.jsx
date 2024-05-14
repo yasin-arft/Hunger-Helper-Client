@@ -1,14 +1,16 @@
-import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import ManageFoodRow from "./ManageFoodRow";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageMyFoods = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
   const { data: myFoods, isPending, refetch } = useQuery({
     queryKey: ['my-foods'],
     queryFn: async () => {
-      const res = await axios.get(`/my_foods?donatorEmail=${user.email}`);
+      const res = await axiosSecure.get(`/my_foods?donatorEmail=${user.email}`);
       return res.data
     }
   });

@@ -45,11 +45,11 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       const userEmail = currentUser?.email;
-      const loggedUser = {user: userEmail};
+      const loggedUser = { userEmail };
 
       if (currentUser) {
         axios.post('/jwt', loggedUser, { withCredentials: true })
-          .then(res => console.log(res.data));
+          .then();
       }
     });
 

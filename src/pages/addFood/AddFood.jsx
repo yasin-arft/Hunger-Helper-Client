@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddFood = () => {
   const { register, handleSubmit } = useForm();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const handleAddFood = data => {
-    axios.post('/foods', data)
+    axiosSecure.post('/foods', data)
       .then(res =>{
         if(res.data.insertedId){
           Swal.fire({

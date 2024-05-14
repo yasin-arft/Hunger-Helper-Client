@@ -1,13 +1,14 @@
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const ManageFoodRow = ({ food, refetch }) => {
   const { _id, foodImage, foodName, additionalNotes, foodQuantity, pickupLocation, expiredDate } = food;
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -20,7 +21,7 @@ const ManageFoodRow = ({ food, refetch }) => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/food/${id}`)
+        axiosSecure.delete(`/food/${id}`)
           .then(res => {
             if (res.data.deletedCount > 0) {
               Swal.fire({

@@ -2,12 +2,13 @@ import PropTypes from "prop-types";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const RequestModal = ({ modalOpen, setModalOpen, foodData }) => {
   const { _id, foodName, foodImage, donatorName, donatorEmail, pickupLocation, expiredDate, additionalNotes } = foodData;
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const date = new Date();
   const requestDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
@@ -17,12 +18,12 @@ const RequestModal = ({ modalOpen, setModalOpen, foodData }) => {
   // tanstack query
   const { mutate: requestFood, data: requestedResult, isSuccess, isPending } = useMutation({
     mutationFn: requestData => {
-      return axios.post('/requested_foods', requestData);
+      return axiosSecure.post('/requested_foods', requestData);
     }
   });
   const { mutate: updateStatus } = useMutation({
     mutationFn: status => {
-      return axios.patch(`/food/${_id}`, status);
+      return axiosSecure.patch(`/food/${_id}`, status);
     }
   });
 
