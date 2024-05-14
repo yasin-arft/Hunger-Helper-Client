@@ -3,6 +3,7 @@ import logo from '../../../assets/logo/hunger_helper_logo.png';
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Navbar = () => {
   const { user, signOutUser, setLoading } = useAuth();
@@ -28,10 +29,13 @@ const Navbar = () => {
 
   // sign out handler
   const handleSignOut = () => {
+    const loggedUser = { email: user.email };
     signOutUser()
       .then(() => {
         toast.success('Signed out successfully!');
         setLoading(false);
+        axios.post('/logout', loggedUser, { withCredentials: true })
+          .then(res => console.log(res.data));
       })
       .catch(() => {
         toast.error('Error: Try again!');

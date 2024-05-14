@@ -15,7 +15,6 @@ const MyFoodRequest = () => {
 
   if (isPending) return
 
-  console.log(myFoodRequests);
   return (
     <section className="my-5 md:my-8 lg:my-10">
       <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center">My Food Requests</h2>
