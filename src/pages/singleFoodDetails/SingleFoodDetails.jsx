@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import RequestModal from "./RequestModal";
 import { useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SingleFoodDetails = () => {
   const { id } = useParams();
   const [modalOpen, setModalOpen] = useState(false);
+  const axiosSecure = useAxiosSecure();
   const { data: foodData, isPending } = useQuery({
     queryKey: ['single-food'],
     queryFn: async () => {
-      const res = await axios.get(`/food/${id}`);
+      const res = await axiosSecure.get(`/food/${id}`);
       return res.data
     }
   });
