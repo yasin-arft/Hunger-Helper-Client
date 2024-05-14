@@ -16,7 +16,7 @@ const RequestModal = ({ modalOpen, setModalOpen, foodData }) => {
   const { register, handleSubmit } = useForm();
 
   // tanstack query
-  const { mutate: requestFood, data: requestedResult, isSuccess, isPending } = useMutation({
+  const { mutate: requestFood, data: requestedResult, isSuccess, isPending, reset } = useMutation({
     mutationFn: requestData => {
       return axiosSecure.post('/requested_foods', requestData);
     }
@@ -58,7 +58,8 @@ const RequestModal = ({ modalOpen, setModalOpen, foodData }) => {
       text: 'Food requested successfully',
       icon: 'success',
       confirmButtonText: 'Ok'
-    })
+    });
+    reset();
   }
 
   return (
