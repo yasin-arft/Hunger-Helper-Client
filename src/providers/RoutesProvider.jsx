@@ -10,11 +10,13 @@ import PrivateRoute from "../routes/PrivateRoute";
 import ManageMyFoods from "../pages/manageMyFoods/ManageMyFoods";
 import UpdateFood from "../pages/updateFood/UpdateFood";
 import MyFoodRequest from "../pages/myFoodRequest/MyFoodRequest";
+import ErrorPage from "../pages/error/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
