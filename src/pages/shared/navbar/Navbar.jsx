@@ -29,13 +29,13 @@ const Navbar = () => {
 
   // sign out handler
   const handleSignOut = () => {
-    const loggedUser = { email: user.email };
+    const loggedUser = { userEmail: user.email };
     signOutUser()
       .then(() => {
         toast.success('Signed out successfully!');
         setLoading(false);
         axios.post('/logout', loggedUser, { withCredentials: true })
-          .then(res => console.log(res.data));
+          .then();
       })
       .catch(() => {
         toast.error('Error: Try again!');
