@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
@@ -14,7 +13,7 @@ const UpdateFood = () => {
   const { data: food, isPending, refetch } = useQuery({
     queryKey: ['food-to-update'],
     queryFn: async () => {
-      const res = await axios.get(`/food/${id}`);
+      const res = await axiosSecure.get(`/food/${id}`);
       return res.data
     }
   });
