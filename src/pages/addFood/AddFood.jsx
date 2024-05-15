@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AddFood = () => {
   const { register, handleSubmit } = useForm();
@@ -24,6 +25,11 @@ const AddFood = () => {
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
+      
+      <Helmet>
+        <title>Hunger Helper | Add Food</title>
+      </Helmet>
+      
       <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center">Add a Food</h2>
       <div className="max-w-xl mx-auto">
         <form onSubmit={handleSubmit(handleAddFood)} className="grid grid-cols-2 gap-5">

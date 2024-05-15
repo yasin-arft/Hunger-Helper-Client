@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import MyFoodRow from "./MyFoodRow";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MyFoodRequest = () => {
   const { user } = useAuth();
@@ -18,6 +19,11 @@ const MyFoodRequest = () => {
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
+      
+      <Helmet>
+        <title>Hunger Helper | My Food Requests</title>
+      </Helmet>
+      
       <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center">My Food Requests</h2>
       <div className="max-w-full">
         <div className="overflow-x-auto">

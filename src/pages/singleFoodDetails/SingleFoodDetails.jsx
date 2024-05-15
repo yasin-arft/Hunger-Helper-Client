@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import RequestModal from "./RequestModal";
 import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const SingleFoodDetails = () => {
   const { id } = useParams();
@@ -27,6 +28,11 @@ const SingleFoodDetails = () => {
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
+      
+      <Helmet>
+        <title>Hunger Helper | Food Details</title>
+      </Helmet>
+      
       <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center">Food Details</h2>
       <div className="flex flex-col md:flex-row gap-6">
         <div className="md:w-2/3 card md:card-side border">

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const UpdateFood = () => {
   const { id } = useParams();
@@ -37,6 +38,11 @@ const UpdateFood = () => {
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
+
+      <Helmet>
+        <title>Hunger Helper | Update Food</title>
+      </Helmet>
+
       <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center">Update Food</h2>
       <div className="max-w-xl mx-auto">
         <form onSubmit={handleSubmit(handleUpdateFood)} className="grid grid-cols-2 gap-5">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Foods from "../shared/foods/Foods";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -17,6 +18,11 @@ const AvailableFoods = () => {
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
+      
+      <Helmet>
+        <title>Hunger Helper | Available Foods</title>
+      </Helmet>
+      
       <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center">Available Foods</h2>
       <div className="flex justify-between">
         <form onSubmit={handleSearch} className="flex gap-2">

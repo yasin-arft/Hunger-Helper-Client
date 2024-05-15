@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import useSignRedirect from "../../hooks/useSignRedirect";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const { createUser, setLoading } = useAuth();
@@ -44,6 +45,11 @@ const SignUp = () => {
   }
   return (
     <div className="hero my-5 md:my-8 lg:my-10">
+      
+      <Helmet>
+        <title>Hunger Helper | Sign Up</title>
+      </Helmet>
+      
       <div className="hero-content flex-col md:flex-row gap-5 md:gap-10">
         <img src={logo} className="w-1/2 md:max-w-sm rounded-lg" />
         <div>
