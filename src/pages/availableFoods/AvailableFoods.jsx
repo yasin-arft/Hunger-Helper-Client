@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Foods from "../shared/foods/Foods";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import FoodCard from "../shared/foods/FoodCard";
+import toast from "react-hot-toast";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -15,13 +15,17 @@ const AvailableFoods = () => {
 
   const handleSearch = e => {
     e.preventDefault();
-    console.log(e.targe.search.value);
+    const searchedFood = foods.find(food => food.foodName === e.target.search.value);
+    if (searchedFood) {
+      setFoods([searchedFood]);
+    } else {
+      toast.error('No food matched');
+    }
   }
 
   const handleLayout = () => {
     setTwoColLayout(!twoColLayout);
   }
-  console.log(twoColLayout);
 
   return (
     <section className="my-5 md:my-8 lg:my-10">
