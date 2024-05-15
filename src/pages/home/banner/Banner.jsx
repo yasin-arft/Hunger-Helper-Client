@@ -1,5 +1,4 @@
 
-
 const Banner = () => {
   return (
     <section className="mb-5 mt-2 md:mb-8 lg:mb-10 rounded-md overflow-hidden">
@@ -8,7 +7,7 @@ const Banner = () => {
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">Hunger Helper</h1>
-            <p className="mb-5">A non-profit food donation website. Working for bring ease in food donation related activities.</p>
+            <p className="mb-5">A non-profit food donation website. Working to bring ease in food donation related activities.</p>
           </div>
         </div>
       </div>
