@@ -9,8 +9,7 @@ import { HelmetProvider } from 'react-helmet-async'
 
 const queryClient = new QueryClient()
 
-axios.defaults.baseURL = 'http://localhost:5000';
-// axios.defaults.baseURL = import.meta.env.VITE_ServerBaseUrl;
+axios.defaults.baseURL = import.meta.env.VITE_ServerBaseUrl;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

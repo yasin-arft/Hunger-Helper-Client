@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const axiosSecure = axios.create({
-  // baseURL: import.meta.env.VITE_ServerBaseUrl,
-  baseURL: 'http://localhost:5000',
+  baseURL: import.meta.env.VITE_ServerBaseUrl,
   withCredentials: true
 });
 
